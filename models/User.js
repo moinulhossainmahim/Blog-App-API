@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
-const res = require("express/lib/response");
 
 const userSchema = new mongoose.Schema(
   {
@@ -24,7 +23,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    profilepic: {
+    profilePic: {
       type: String,
       default: "",
     },

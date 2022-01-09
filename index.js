@@ -1,11 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 require("./db/mongoose");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
 const categoryRoute = require("./routes/categories");
 const multer = require("multer");
-
+const path = require("path");
 const app = express();
 
 const storage = multer.diskStorage({
@@ -26,8 +27,9 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     res.send(error);
   }
 });
-
+app.use(cors());
 app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(authRoute);
 app.use(userRoute);
 app.use(postRoute);
